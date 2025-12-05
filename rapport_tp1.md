@@ -102,7 +102,27 @@ Après un docker stop, le conteneur disparaît de docker ps, mais il reste visib
 ```
 ---
 ## Exercice 5: Démarrer un mini-système multi-conteneurs avec Docker Compose
+### Question 5-c
+![alt text](captures/image-11.png)
+### Question 5-d
+![alt text](captures/image-12.png)
+### Question 5-e
+![alt text](captures/image-13.png)
+```
+docker compose down:
 
+    - Arrête tous les services définis dans docker-compose.yml
+    - Supprime aussi les conteneurs créés par Compose
+    - Supprime le réseau créé automatiquement
+    - C’est une arrêt complet du système multi-conteneurs.
+
+docker stop <id>
+
+    - Arrête uniquement un conteneur spécifique
+    - Ne supprime pas le conteneur
+    - Ne supprime pas les réseaux ou volumes
+    - C’est une action individuelle sur un conteneur.
+```
 ---
 ## Exercice 6: Interagir avec la base de données PostgreSQL dans un conteneur
 
