@@ -1,11 +1,11 @@
 # Systèmes pour le machine learning
 ## Exercice 1: Installation de Docker et vérification de l’environnement
 ### Question 1-a
-![alt text](image.png)
+![alt text](captures/image.png)
 ### Question 1-b
-![alt text](image-1.png)
+![alt text](captures/image-1.png)
 ### Question 1-c
-![alt text](image-2.png)
+![alt text](captures/image-2.png)
 ```
 La commande docker ps -a affiche tous les conteneurs présents sur la machine, qu’ils soient :
 
@@ -33,7 +33,7 @@ Un conteneur Docker, lui, est une instance vivante d’une image. C’est l’im
 On peut créer plusieurs conteneurs à partir d’une même image.
 ```
 ### Question 2-b
-![alt text](image-3.png)
+![alt text](captures/image-3.png)
 ```
 Lorsque j’exécute cette commande, Docker :
 
@@ -44,14 +44,14 @@ affiche la sortie dans le terminal
 arrête immédiatement le conteneur, car la commande a fini de s’exécuter.
 ```
 ### Question 2-c
-![alt text](image-4.png)
+![alt text](captures/image-4.png)
 ```
 Le conteneur Alpine apparaît avec le statut Exited car il a exécuté une seule commande (echo), puis il s’est arrêté immédiatement.
 Un conteneur Docker ne reste actif que si un processus tourne en continu (par exemple un serveur).
 Ici, la commande est terminée et donc le conteneur s'arrête automatiquement.
 ```
 ### Question 2-d
-![alt text](image-5.png)
+![alt text](captures/image-5.png)
 ```
 La commande ls montre un système de fichiers minimal : seulement quelques dossiers (bin, etc, usr, etc.).
 
