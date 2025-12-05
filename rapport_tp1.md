@@ -63,15 +63,43 @@ Docker revient au terminal de l’hôte.
 ```
 ---
 ## Exercice 3: Construire une première image Docker avec une mini-API FastAPI
-### Question 3-a
-
-### Question 3-b
-
 ### Question 3-c
 ![alt text](captures/image-6.png)
 ---
 ## Exercice 4: Exécuter l’API FastAPI dans un conteneur Docker
+### Question 4-a
+```
+L’option: -p 8000:8000
+signifie le port 8000 du conteneur (où tourne FastAPI) est mappé (connecté) au port 8000 de ma machine hôte.
 
+Ça permet d’accéder à l’API FastAPI du conteneur via: http://localhost:8000
+
+Sans ce mapping l'API tournerait dans Docker mais serait inaccessible depuis l’extérieur.
+```
+![alt text](captures/image-7.png)
+### Question 4-b
+![alt text](captures/image-8.png)
+### Question 4-c
+![alt text](captures/image-9.png)
+```
+- Le nom du conteneur: tender_shtern
+- L'image utilisée: simple-api
+- Le port mappé: 0.0.0.0:8000 → 8000/tcp
+
+```
+### Question 4-d
+![alt text](captures/image-10.png)
+```
+docker ps: affiche uniquement les conteneurs en cours d’exécution.
+
+docker ps -a: affiche tous les conteneurs :
+- en cours d’exécution
+- arrêtés
+- terminés
+
+Donc :
+Après un docker stop, le conteneur disparaît de docker ps, mais il reste visible dans docker ps -a avec le statut Exited.
+```
 ---
 ## Exercice 5: Démarrer un mini-système multi-conteneurs avec Docker Compose
 
