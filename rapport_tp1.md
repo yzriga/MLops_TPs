@@ -125,9 +125,120 @@ docker stop <id>
 ```
 ---
 ## Exercice 6: Interagir avec la base de données PostgreSQL dans un conteneur
+### Question 6-a
+![alt text](captures/image-14.png)
+```
+docker compose exec: exécute une commande à l’intérieur d’un conteneur géré par Docker Compose, sans l’arrêter ou le redémarrer.
 
+db: nom du service défini dans docker-compose.yml (le conteneur PostgreSQL).
+
+psql: programme client PostgreSQL qui permet d’exécuter des commandes SQL.
+
+-U demo: option -U = User.
+Cela indique l’utilisateur PostgreSQL à utiliser: demo.
+
+-d demo: option -d = Database.
+Cela spécifie le nom de la base à laquelle se connecter: demo.
+```
+### Question 6-b
+![alt text](captures/image-15.png)
+```
+PostgreSQL version 16.11
+
+La base actuellement utilisée est demo.
+```
+### Question 6-c
+```
+- Hostname à utiliser:
+
+    Dans Docker Compose, chaque service possède un nom DNS automatique.
+    Donc l’API peut se connecter à PostgreSQL via:
+
+    hostname: db
+
+- Port:
+
+    À l’intérieur du réseau Docker:
+
+    port: 5432
+
+- Identifiants:
+
+    Ceux définis dans docker-compose.yml:
+
+    POSTGRES_USER: demo
+    POSTGRES_PASSWORD: demo
+    POSTGRES_DB: demo
+
+    Donc:
+
+    utilisateur: demo
+    mot de passe: demo
+    base: demo
+```
+### Question 6-d
+![alt text](captures/image-16.png)
+```
+- Sans -v, Docker supprime uniquement les conteneurs et le réseau.
+Les données PostgreSQL sont conservées (volumes persistants).
+
+- Avec -v, Docker supprime aussi les volumes associés aux services.
+Cela efface toutes les données stockées par PostgreSQL.
+La base est remise à zéro comme si elle n’avait jamais existé.
+```
 ---
 ## Exercice 7: Déboguer des conteneurs Docker : commandes essentielles et bonnes pratiques
+### Question 7-a
+![alt text](captures/image-17.png)
+### Question 7-b
+![alt text](captures/image-18.png)
+```
+- ls: montre le contenu du dossier /app dans le conteneur: app.py
 
+
+- python --version: affiche la version de Python installée dans l’image: Python 3.10.19
+
+- exit: me fait sortir du conteneur.
+```
+### Question 7-c
+![alt text](captures/image-19.png)
+```
+Un redémarrage est utile lorsque :
+
+    - on change du code Python mais le conteneur utilise encore l’ancienne version.
+
+    - l’API plante après une erreur temporaire.
+
+    - la connexion à la base de données échoue au premier démarrage.
+
+    - une nouvelle configuration d’environnement a été ajoutée.
+
+Redémarrer permet de repartir proprement sans reconstruire l’image.
+```
+### Question 7-d
+![alt text](captures/image-20.png)
+```
+En consultant les logs avec: docker compose logs -f api
+
+J’ai observé une erreur: NameError: name 'app' is not defined. Did you mean: 'appi'?
+
+Cela indique que FastAPI essaie de charger un objet app, mais il ne le trouve pas dans app.py.
+
+Le Dockerfile lance l’application avec: CMD ["uvicorn", "app:app", ...]
+
+Donc Uvicorn s’attend à trouver une variable app dans le module app.py.
+Comme je l’avais volontairement renommée en appi, l’API ne peut plus démarrer et le conteneur plante.
+```
+### Question 7-e
+![alt text](captures/image-21.png)
+```
+- Les conteneurs arrêtés s’accumulent et saturent le système.
+
+- Les images inutilisées occupent plusieurs Go de stockage.
+
+- Garder un environnement propre évite des conflits lors des builds.
+
+Et donc pruner régulièrement empêche que Docker devienne lent ou plein.
+```
 ---
 ## Exercice 8: Questions de réflexion et consignes pour le rendu
