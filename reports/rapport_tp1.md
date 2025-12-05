@@ -1,11 +1,11 @@
 # Systèmes pour le machine learning
 ## Exercice 1: Installation de Docker et vérification de l’environnement
 ### Question 1-a
-![alt text](captures/image.png)
+![alt text](../captures/image.png)
 ### Question 1-b
-![alt text](captures/image-1.png)
+![alt text](../captures/image-1.png)
 ### Question 1-c
-![alt text](captures/image-2.png)
+![alt text](../captures/image-2.png)
 ```
 La commande docker ps -a affiche tous les conteneurs présents sur la machine, qu’ils soient :
 
@@ -33,7 +33,7 @@ Un conteneur Docker, lui, est une instance vivante d’une image. C’est l’im
 On peut créer plusieurs conteneurs à partir d’une même image.
 ```
 ### Question 2-b
-![alt text](captures/image-3.png)
+![alt text](../captures/image-3.png)
 ```
 Lorsque j’exécute cette commande, Docker :
 
@@ -44,14 +44,14 @@ affiche la sortie dans le terminal
 arrête immédiatement le conteneur, car la commande a fini de s’exécuter.
 ```
 ### Question 2-c
-![alt text](captures/image-4.png)
+![alt text](../captures/image-4.png)
 ```
 Le conteneur Alpine apparaît avec le statut Exited car il a exécuté une seule commande (echo), puis il s’est arrêté immédiatement.
 Un conteneur Docker ne reste actif que si un processus tourne en continu (par exemple un serveur).
 Ici, la commande est terminée et donc le conteneur s'arrête automatiquement.
 ```
 ### Question 2-d
-![alt text](captures/image-5.png)
+![alt text](../captures/image-5.png)
 ```
 La commande ls montre un système de fichiers minimal : seulement quelques dossiers (bin, etc, usr, etc.).
 
@@ -64,7 +64,7 @@ Docker revient au terminal de l’hôte.
 ---
 ## Exercice 3: Construire une première image Docker avec une mini-API FastAPI
 ### Question 3-c
-![alt text](captures/image-6.png)
+![alt text](../captures/image-6.png)
 ---
 ## Exercice 4: Exécuter l’API FastAPI dans un conteneur Docker
 ### Question 4-a
@@ -76,11 +76,11 @@ signifie le port 8000 du conteneur (où tourne FastAPI) est mappé (connecté) a
 
 Sans ce mapping l'API tournerait dans Docker mais serait inaccessible depuis l’extérieur.
 ```
-![alt text](captures/image-7.png)
+![alt text](../captures/image-7.png)
 ### Question 4-b
-![alt text](captures/image-8.png)
+![alt text](../captures/image-8.png)
 ### Question 4-c
-![alt text](captures/image-9.png)
+![alt text](../captures/image-9.png)
 ```
 - Le nom du conteneur: tender_shtern
 - L'image utilisée: simple-api
@@ -88,7 +88,7 @@ Sans ce mapping l'API tournerait dans Docker mais serait inaccessible depuis l�
 
 ```
 ### Question 4-d
-![alt text](captures/image-10.png)
+![alt text](../captures/image-10.png)
 ```
 docker ps: affiche uniquement les conteneurs en cours d’exécution.
 
@@ -103,11 +103,11 @@ Après un docker stop, le conteneur disparaît de docker ps, mais il reste visib
 ---
 ## Exercice 5: Démarrer un mini-système multi-conteneurs avec Docker Compose
 ### Question 5-c
-![alt text](captures/image-11.png)
+![alt text](../captures/image-11.png)
 ### Question 5-d
-![alt text](captures/image-12.png)
+![alt text](../captures/image-12.png)
 ### Question 5-e
-![alt text](captures/image-13.png)
+![alt text](../captures/image-13.png)
 ```
 docker compose down:
 
@@ -126,7 +126,7 @@ docker stop <id>
 ---
 ## Exercice 6: Interagir avec la base de données PostgreSQL dans un conteneur
 ### Question 6-a
-![alt text](captures/image-14.png)
+![alt text](../captures/image-14.png)
 ```
 docker compose exec: exécute une commande à l’intérieur d’un conteneur géré par Docker Compose, sans l’arrêter ou le redémarrer.
 
@@ -141,7 +141,7 @@ Cela indique l’utilisateur PostgreSQL à utiliser: demo.
 Cela spécifie le nom de la base à laquelle se connecter: demo.
 ```
 ### Question 6-b
-![alt text](captures/image-15.png)
+![alt text](../captures/image-15.png)
 ```
 PostgreSQL version 16.11
 
@@ -177,7 +177,7 @@ La base actuellement utilisée est demo.
     base: demo
 ```
 ### Question 6-d
-![alt text](captures/image-16.png)
+![alt text](../captures/image-16.png)
 ```
 - Sans -v, Docker supprime uniquement les conteneurs et le réseau.
 Les données PostgreSQL sont conservées (volumes persistants).
@@ -189,9 +189,9 @@ La base est remise à zéro comme si elle n’avait jamais existé.
 ---
 ## Exercice 7: Déboguer des conteneurs Docker : commandes essentielles et bonnes pratiques
 ### Question 7-a
-![alt text](captures/image-17.png)
+![alt text](../captures/image-17.png)
 ### Question 7-b
-![alt text](captures/image-18.png)
+![alt text](../captures/image-18.png)
 ```
 - ls: montre le contenu du dossier /app dans le conteneur: app.py
 
@@ -201,7 +201,7 @@ La base est remise à zéro comme si elle n’avait jamais existé.
 - exit: me fait sortir du conteneur.
 ```
 ### Question 7-c
-![alt text](captures/image-19.png)
+![alt text](../captures/image-19.png)
 ```
 Un redémarrage est utile lorsque :
 
@@ -216,7 +216,7 @@ Un redémarrage est utile lorsque :
 Redémarrer permet de repartir proprement sans reconstruire l’image.
 ```
 ### Question 7-d
-![alt text](captures/image-20.png)
+![alt text](../captures/image-20.png)
 ```
 En consultant les logs avec: docker compose logs -f api
 
@@ -230,7 +230,7 @@ Donc Uvicorn s’attend à trouver une variable app dans le module app.py.
 Comme je l’avais volontairement renommée en appi, l’API ne peut plus démarrer et le conteneur plante.
 ```
 ### Question 7-e
-![alt text](captures/image-21.png)
+![alt text](../captures/image-21.png)
 ```
 - Les conteneurs arrêtés s’accumulent et saturent le système.
 
@@ -242,3 +242,16 @@ Et donc pruner régulièrement empêche que Docker devienne lent ou plein.
 ```
 ---
 ## Exercice 8: Questions de réflexion et consignes pour le rendu
+### Question 8-a
+```
+Un notebook Jupyter n’est pas adapté pour la production car il ne garantit pas la reproductibilité: on peut exécuter les cellules dans n’importe quel ordre, et comme expliqué dans le cours, cela crée des “états cachés non reproductibles”.
+En plus, un notebook dépend de l’environnement local, ce qui va à l’opposé du besoin d’un environnement contrôlé et isolé.
+Enfin, ce n’est pas un outil prévu pour être automatisé, testé ou monitoré, ce qui est indispensable pour un vrai système ML en production.
+
+En bref, les notebooks sont parfaits pour de l'exploration ou des prototypes, mais pas pour la mise en production.
+```
+### Question 8-b
+```
+Docker Compose est essentiel car il permet de lancer plusieurs services (API, base de données…) comme un seul système cohérent, ce qui correspond exactement à l’architecture ML vue dans le cours.
+Il gère automatiquement le réseau, les dépendances (depends_on), la configuration des ports et la reproductibilité de l’environnement. Pendant le TP, il m’a permis de démarrer une API + PostgreSQL avec une seule commande, ce qui serait compliqué et source d’erreurs sans Compose.
+```
