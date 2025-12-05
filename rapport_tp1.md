@@ -84,7 +84,7 @@ Sans ce mapping l'API tournerait dans Docker mais serait inaccessible depuis l�
 ```
 - Le nom du conteneur: tender_shtern
 - L'image utilisée: simple-api
-- Le port mappé: 0.0.0.0:8000 → 8000/tcp
+- Le port mappé: 0.0.0.0:8000->8000/tcp
 
 ```
 ### Question 4-d
