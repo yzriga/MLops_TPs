@@ -68,6 +68,7 @@ Docker revient au terminal de l’hôte.
 ### Question 3-b
 
 ### Question 3-c
+![alt text](captures/image-6.png)
 ---
 ## Exercice 4: Exécuter l’API FastAPI dans un conteneur Docker
 
