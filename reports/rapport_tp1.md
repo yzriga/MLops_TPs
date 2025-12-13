@@ -1,4 +1,4 @@
-# Systèmes pour le machine learning
+# Systèmes pour le machine learning - CI1 : Conteneurs
 ## Exercice 1: Installation de Docker et vérification de l’environnement
 ### Question 1-a
 ![alt text](../captures/image.png)
