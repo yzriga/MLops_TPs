@@ -50,7 +50,7 @@ En cas de conflit sur la clé primaire, les colonnes non clés sont mises à jou
 ### Question 3-c
 ![alt text](../captures/image-29.png)
 ```
-Après l’ingestion des données du mois 000, la base de données PostgreSQL contient 7 043 clients, correspondant au nombre total d’utilisateurs présents dans les tables users et subscriptions
+Après l’ingestion des données du mois 000, la base de données PostgreSQL contient 7043 clients, correspondant au nombre total d’utilisateurs présents dans les tables users et subscriptions
 ```
 ---
 ## Exercice 4: Validation des données avec Great Expectations 
@@ -74,5 +74,30 @@ Elles permettent de détecter rapidement des anomalies en amont du pipeline, év
 ---
 ## Exercice 5: Snapshots et ingestion month_001
 ### Question 5-a
+```
+La fonction `snapshot_month` permet de figer l’état des données à une date donnée grâce au paramètre `as_of`, en copiant les tables live vers des tables de snapshots afin de conserver un historique mensuel des données.
+```
 ### Question 5-b
+![alt text](../captures/image-31.png)
+![alt text](../captures/image-32.png)
+![alt text](../captures/image-33.png)
+```
+Les deux snapshots contiennent le même nombre de lignes (7043). Cela s’explique par le fait que le nombre d’utilisateurs est identique entre les deux mois, tandis que les snapshots permettent de conserver l’évolution des valeurs dans le temps.
+```
 ### Question 5-c
+#### Synthèse
+##### Un petit schéma montrant le pipeline complet
+![alt text](../captures/pipeline_tp2.png)
+##### Pourquoi on ne travaille pas directement sur les tables live pour entraîner un modèle ?
+```
+Les tables live représentent l’état courant des données et peuvent évoluer dans le temps (mises à jour, corrections, nouvelles valeurs). Entraîner un modèle directement sur ces tables peut introduire des incohérences temporelles, car le modèle pourrait accéder à des informations qui n’étaient pas disponibles au moment de la prédiction. Cela rend également les expériences difficiles à reproduire.
+```
+##### Pourquoi les snapshots sont importants pour éviter la data leakage et garantir la reproductibilité temporelle ?
+```
+Les snapshots permettent de figer l’état des données à une date donnée grâce au champ `as_of`. Ils garantissent que le modèle est entraîné uniquement sur des données disponibles à un instant précis, évitant ainsi toute fuite d’information future (data leakage). De plus, ils assurent la reproductibilité temporelle : un entraînement peut être relancé ultérieurement avec exactement les mêmes données.
+```
+##### Réflexion personnelle
+```
+La partie la plus difficile de ce TP a été la mise en place de l’ingestion des données, en particulier la gestion des upserts et des snapshots.
+J’ai rencontré quelques erreurs, comme des problèmes de schéma SQL, des conflits de clés primaires ou des erreurs de configuration Docker. Ces problèmes ont été corrigés en vérifiant les logs de Prefect et PostgreSQL et en testant le pipeline étape par étape.
+```
