@@ -45,9 +45,15 @@ Si un user_id n’existe pas dans l’Online Store ou s’il n’a pas été mat
 Par exemple:
 ```
 ![alt text](../captures/image-38.png)
+
+
 ![alt text](../captures/image-39.png)
 ![alt text](../captures/image-40.png)
 ## Réflexion
 ```
 L’endpoint /features/{user_id} réduit le training-serving skew car il interroge directement Feast, qui centralise la définition et le calcul des features. Les mêmes FeatureViews sont utilisées pour construire le dataset d’entraînement offline et pour servir les features en production, garantissant ainsi une cohérence totale entre entraînement et inférence.
+```
+
+```
+Le dépôt Git a été tagué avec tp3.
 ```
